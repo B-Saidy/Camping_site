@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block content  %} 
+<div class="container">
+     <header class="jumbotron">
+         <div class="container">
+             <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
+             <p>View our hand-picked campgrounds from all over the world</p>
+             <p>
+                <a class="btn btn-primary btn-lg" href="{% url 'new' %}">Add New Campground</a>
+             </p>
+         </div>
+     </header>
+     {% if camps %} 
+        <div class="row text-center" style="display:flex; flex-wrap: wrap;" >
+         {% for camp in camps  %}
+            <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                    <img src="{{ camp.image.url }}" alt = "Image error" >
+                   <div class="caption">
+                        <h4>{{camp.name}}</h4>
+                    <p>
+                        <a href=" {% url 'show' camp.id %} " class="btn btn-primary">More Info</a>
+                    </p>
+                 </div>
+                </div>
+            </div>
+         {% endfor %}  
+        </div>
+     {% else %}
+        <p> No campground </p>
+     {% endif %}
+    </div>
+    <!-- Paginator -->
+    <div class="container text-center">
+       <div class="row">
+            <div class="col-md-12">
+            {% if camps.has_other_pages %}
+              <ul class="pagination">
+              {% if camps.has_previous %}
+                <li class="page-item">
+                  <a href=" ?page = {{camps.previous_page_number}} " class="page-link">&laquo;</a>
+                </li>
+              {% else %}
+              <li class="page-item disabled">
+                <a  class="page-link">&laquo;</a>
+              </li>
+              {% endif %}  
+               {% for i in camps.paginator.page_range%}
+                 {% if camps.number == i %}
+                 <li class="page-item active">
+                   <a class="page-link">{{i}}</a>
+                 </li>
+                   {%else%}
+                    <li class="page-item">
+                      <a href="?page={{i}}" class="page-link">{{i}}</a>
+                    </li>
+                 {% endif %}
+              {%endfor%}
+                  {% if camps.has_next %}
+                  <li class="page-item">
+                    <a href="?page={{camps.next_page_number}}" class="page-link">&raquo;</a>
+                  </li>
+                  {% else %}
+                  <li class="page-item disabled">
+                    <a  class="page-link">&raquo;</a>
+                  </li>
+                  {% endif %} 
+              </ul>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+</div> 
+{% endblock  %}

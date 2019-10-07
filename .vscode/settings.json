@@ -1,0 +1,8 @@
+{
+    "python.pythonPath": "C:\\Users\\dell\\Desktop\\web\\venv\\django_env\\Scripts\\python.exe",
+    "python.autoComplete.extraPaths":  ["C:\\Python\\python.exe"]
+}
+
+// "python.pythonPath": "C:\\Users\\dell\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
+// "C:\\Users\\dell\\Desktop\\web\\venv\\django_env\\Scripts"
+// C:\Users\dell\Desktop\web\venv\django_env\Lib\site-packages

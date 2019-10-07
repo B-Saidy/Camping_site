@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+{% if camp %}
+ <div class='container'>
+  <h> {{camp.name}} has been updated </h>
+   <p>
+      <a href=" {% url 'show' camp.id %} " class="btn btn-primary">More Info</a>
+  </p>
+</div>
+{% endif %}
+{% endblock content %}
+
