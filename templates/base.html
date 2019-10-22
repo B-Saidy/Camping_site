@@ -25,6 +25,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                  {% if user.is_authenticated %}
+                     <li style = "margin-top: 16px;">
+                       Welcome <strong>{{request.user.username}}!</strong>
+                     </li>
                     <li>
                         <a href="javascript:{document.getElementById('logout').submit()}">
                         Logout</a>
