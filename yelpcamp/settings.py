@@ -24,7 +24,7 @@ SECRET_KEY = '5f3388c2d174f7c99cd7a4ffd199820e63bd6b3f9e208b7c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://mycampsite.herokuapp.com/']
 
 
 # Application definition
