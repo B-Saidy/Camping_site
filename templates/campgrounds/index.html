@@ -1,19 +1,35 @@
 {% extends 'base.html' %}
 {% block content  %} 
 <div class="container">
-     <header class="jumbotron">
+     <header class="jumbotron mt-2">
          <div class="container">
-             <h1><span class="glyphicon glyphicon-tent"></span> Welcome To YelpCamp!</h1>
-             <p>View our hand-picked campgrounds from all over the world</p>
+             <h1><span class="glyphicon glyphicon-tent"></span> Welcome To CampSite!</h1>
+             <p>Enjoy your holidays on our beautiful campsites from all over the world</p>
              <p>
                 <a class="btn btn-info btn-lg" href="{% url 'new' %}">Add New Campground</a>
              </p>
          </div>
      </header>
      {% if camps %} 
-        <div class="row text-center" style="display:flex; flex-wrap: wrap;" >
+      <div class="row pb-5 mb-0 mt-0">
+              {% for camp in camps  %}
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+              <!-- Card-->
+              <div class="card rounded shadow-sm border-0">
+                  <div class="card-body p-4"><img src="{{ camp.image.url }}" alt="" width="250" height="300" class="img-fluid rounded img-thumbnail d-block mx-auto mb-3  ">
+                  <h5 class="text-center"> <a href="#" class="text-dark "> {{camp.name}} </a></h5>
+                      <hr>
+                      <div class="text-center">
+                        <a  href=" {% url 'show' camp.id %} " class="btn btn-info">More Info</button></a>                             
+                      </div>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+      </div>
+        {% comment %} <div class='row mb-4' >
          {% for camp in camps  %}
-            <div class="col-sm-6 col-md-4">
+            <div class="col-lg-3 col-md-6 mr-auto mb-2">
                 <div class="thumbnail">
                     <img src="{{ camp.image.url }}" alt = "Image error" >
                    <div class="caption">
@@ -25,50 +41,52 @@
                 </div>
             </div>
          {% endfor %}  
-        </div>
+        </div> {% endcomment %}
      {% else %}
         <p> No campground </p>
      {% endif %}
-    </div>
+  </div>
+
+  <div class="container">
+    <div class="d-flex justify-content-center">
     <!-- Paginator -->
-    <div class="container text-center">
-       <div class="row">
-            <div class="col-md-12">
-            {% if camps.has_other_pages %}
-              <ul class="pagination">
-              {% if camps.has_previous %}
+    <div class="row ">
+        <div class="col-md-12 ">
+        {% if camps.has_other_pages %}
+          <ul class="pagination">
+          {% if camps.has_previous %}
+            <li class="page-item">
+              <a href=" ?page = {{camps.previous_page_number}} " class="page-link">&laquo;</a>
+            </li>
+          {% else %}
+          <li class="page-item disabled">
+            <a  class="page-link">&laquo;</a>
+          </li>
+          {% endif %}  
+            {% for i in camps.paginator.page_range%}
+              {% if camps.number == i %}
+              <li class="page-item active">
+                <a class="page-link">{{i}}</a>
+              </li>
+                {% else %}
                 <li class="page-item">
-                  <a href=" ?page = {{camps.previous_page_number}} " class="page-link">&laquo;</a>
+                  <a href="?page={{i}}" class="page-link">{{i}}</a>
                 </li>
+              {% endif %}
+              {% endfor %}
+              {% if camps.has_next %}
+              <li class="page-item">
+                <a href="?page={{camps.next_page_number}}" class="page-link">&raquo;</a>
+              </li>
               {% else %}
               <li class="page-item disabled">
-                <a  class="page-link">&laquo;</a>
+                <a  class="page-link">&raquo;</a>
               </li>
-              {% endif %}  
-               {% for i in camps.paginator.page_range%}
-                 {% if camps.number == i %}
-                 <li class="page-item active">
-                   <a class="page-link">{{i}}</a>
-                 </li>
-                   {%else%}
-                    <li class="page-item">
-                      <a href="?page={{i}}" class="page-link">{{i}}</a>
-                    </li>
-                 {% endif %}
-              {%endfor%}
-                  {% if camps.has_next %}
-                  <li class="page-item">
-                    <a href="?page={{camps.next_page_number}}" class="page-link">&raquo;</a>
-                  </li>
-                  {% else %}
-                  <li class="page-item disabled">
-                    <a  class="page-link">&raquo;</a>
-                  </li>
-                  {% endif %} 
-              </ul>
-            {% endif %}
-            </div>
+              {% endif %} 
+          </ul>
+        {% endif %}
         </div>
     </div>
-</div> 
+  </div>
+</div>
 {% endblock  %}

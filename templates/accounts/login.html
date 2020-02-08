@@ -2,11 +2,11 @@
 {% block content %}
 {% load crispy_forms_tags %}
 <div class="container">
+    <h1 class="text-center">Login</h1>
     <div class="row">
-        <h1 style="text-align: center">Login</h1>
         <div style="width: 30%; margin: 25px auto;">
             <form action=" {% url 'login' %} " method="post">
-              {%csrf_token %}
+              {% csrf_token %}
                 <div class="form-group">
                     <input class="form-control" type="text" name="username" placeholder="username">
                 </div>

@@ -2,6 +2,8 @@
   {% block content %}
   {% load humanize %}
   {% load crispy_forms_tags%}  
+
+  <div class="container">
   <div class="row">
         <div class="col-md-3">
             <p class="lead">YelpCamp</p>
@@ -49,8 +51,10 @@
                         </div>
                     {% endfor %}
                     <hr>
-                    <div class="row">
+                    <div class="container">
                         <h3 style="text-align: center">Comment on {{camp.name}} </h3>
+                    <div class="row">
+                        
                     <div style="width: 30%; margin: 25px auto;">             
                     <form action="{% url 'show' camp.id %}" method="POST">
                         {% csrf_token %}
@@ -65,10 +69,12 @@
                 </div>
             </div>                 
         </div>
+    <
          
         </div>
      {% else %}
      <p> No Campground to show</p>
     {% endif %}
     </div>
+</div>
 {% endblock content %}

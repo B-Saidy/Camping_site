@@ -1,9 +1,9 @@
    {% extends "base.html" %}
    {% block content %}
    
-   
+   <div class="container">
+    <h1 style="text-align: center">Create a New Campground</h1>
    <div class="row">
-        <h1 style="text-align: center">Create a New Campground</h1>
         <div style="width: 30%; margin: 25px auto;">
             <form action="{% url 'new' %}" method="POST" enctype="multipart/form-data">
              {% csrf_token %}
@@ -29,4 +29,5 @@
             <a href="{% url 'index' %}">Go Back</a>
         </div>
     </div>
+</div>
 {% endblock content %}

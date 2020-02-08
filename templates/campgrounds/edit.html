@@ -3,9 +3,9 @@
 {% load crispy_forms_tags %}
 
 {% if camp %}
-  
+  <div class="container">
+    <h1 style="text-align: center">Edit {{camp.name}}</h1>
   <div class="row">
-        <h1 style="text-align: center">Edit {{camp.name}}</h1>
         <div style="width: 30%; margin: 25px auto;">
             <form action="{% url 'edit' camp.id %}" method="POST">
               {%csrf_token %}
@@ -28,6 +28,7 @@
             <a href=" {% url 'show' camp.id %} ">Cancel!</a>
         </div>
     </div>
+</div>
  {% endif %}
 
 {% endblock content %} 
