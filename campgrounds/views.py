@@ -57,7 +57,8 @@ def show(request,camp_id):
         context = {
         'camp':camp,
         'form':form,
-        'comments':comments
+        'comments':comments,
+        'title':camp.name
         }    
         return render(request,'campgrounds/show.html', context)
 @login_required
@@ -80,7 +81,7 @@ def edit(request, camp_id):
             form = UpdateForm()
             context = {
                 'camp':camp,
-                'form':form
+                'form':form,
                 'title':'Edit'
             }
             return render (request,'campgrounds/edit.html', context)
@@ -101,7 +102,7 @@ def new(request):
         camp = Campground.objects.create(name=name,image=image, description=description,price=price, author=author)
         camp.save()
         return redirect('index')
-    return render(request, 'campgrounds/new.html')
+    return render(request, 'campgrounds/new.html',{'title':'New'})
 def delete_comment(request, camp_id):   
     camp = get_object_or_404(Campground, id=camp_id) 
     comments = camp.comments
