@@ -10,7 +10,8 @@ from .forms import CommentForm
 def new_comment(request,camp_id):
     camp = get_object_or_404(Campground, id=camp_id)
     context = {
-        'camp':camp
+        'camp':camp,
+        'title':'Comment'
     }
     return render(request, 'comments/new.html',context)
 

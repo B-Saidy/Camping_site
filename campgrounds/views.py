@@ -20,6 +20,7 @@ def home(request):
     camps = paginator.get_page(page)
     context = {
         'camps':camps,
+        'title':'Home'
     }    
     return render(request,'campgrounds/index.html', context)
 def landing(request):
@@ -48,7 +49,8 @@ def show(request,camp_id):
             context = {
             'camp':camp,
             'form':form,
-            'comments':comments
+            'comments':comments,
+            'title':camp.name
             }    
             return render(request,'campgrounds/show.html', context)
     else: 
@@ -79,6 +81,7 @@ def edit(request, camp_id):
             context = {
                 'camp':camp,
                 'form':form
+                'title':'Edit'
             }
             return render (request,'campgrounds/edit.html', context)
     else:

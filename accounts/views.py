@@ -13,7 +13,7 @@ def register(request):
 			return redirect('login')
 	else:
 		form = RegisterForm()
-	return render (request, 'accounts/register.html', {'form':form})
+	return render (request, 'accounts/register.html', {'form':form, 'title':'Register'})
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
@@ -26,7 +26,7 @@ def login(request):
             messages.error(request, f"Invalid credentials")
             return redirect('login')
     else:
-        return render(request, 'accounts/login.html')
+        return render(request, 'accounts/login.html',{'title':'Login'})
 def logout(request):
     if request.method == 'POST':
         auth.logout(request)
